@@ -8,61 +8,95 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div class="container">
-    <h1 id="title">Hyperscript</h1>
-    <section id="intro">
-        <h2>What is Hyperscript?</h2>
-        <p>Hyperscript is a scripting language designed to enhance HTML by enabling scripts to be written directly within HTML markup. It allows for more interactive and dynamic web pages without the complexity of traditional JavaScript frameworks.</p>
-    </section>
-
-    <section id="details">
-        <h2>Hyperscript in Web Development</h2>
-        <h3>Advantages</h3>
+    <nav class="navbar">
         <ul>
-            <li>Simple and Intuitive Syntax</li>
-            <li>Direct Integration with HTML</li>
-            <li>Enhanced Interactivity</li>
+            <li><a href="index.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Home</a></li>
+            <li><a href="form.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Form</a></li>
+            <li><a href="gallery.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Gallery</a></li>
+            <li><a href="game.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Game</a></li>
+            <li><button id="theme-switcher" _="on click toggle .dark-theme on body">Switch Theme</button></li>
         </ul>
-        <h3>Key Features of Hyperscript</h3>
-    <ul>
-        <li>Event Handling: Straightforward approach to handling user events.</li>
-        <li>Dynamic Content Manipulation: Can easily manipulate DOM elements for dynamic content changes.</li>
-        <li>Compatibility:...</li>
-    </ul>
-    </section>
-    <div class="demogrid">
-        <section id="demo1">
-            <h2>Demonstration</h2>
-            <button _="on click 
-                if #dynamic-text's textContent is 'Hyperscript makes interactivity simple!' 
-                then put 'This text will change when you click the button.' into #dynamic-text 
-                else put 'Hyperscript makes interactivity simple!' into #dynamic-text">
-                Click to Change Text</button>
+    </nav>
+    <div class="container">
+        <h1 id="title">Hyperscript</h1>
+        <div class="demogrid">
+            <section id="demo1">
+                <h2>Simple button events</h2>
+                <button _="on click 
+                    if #dynamic-text's textContent is 'Hyperscript makes interactivity simple!' 
+                    then put 'This text will change when you click the button.' into #dynamic-text 
+                    else put 'Hyperscript makes interactivity simple!' into #dynamic-text">
+                    Click to Change Text
+                </button>
                 <p id="dynamic-text">This text will change when you click the button.</p>
-        </section>
-        <section id="demo2">
-            <h2>Demo 2</h2>
-        </section>
-        <section id="demo1"></section>
-        <section id="demo2"></section>
-    </div>
-
-    <section id="backend">
-        <h2>Backend</h2>
-        <p>Here we can discuss how backend works...</p>
-    </section>
-
-    <section id="compairison">
-        <h2>Comparison to JS</h2>
-        <p>placeholder</p>
-    </section>
-
-    <section id="conclusion">
-        <h2>Conclusion? Or is this section neccessary?</h2>
-        <p>placeholder</p>
-    </section>
-    </div>
-    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+    
+                <button onclick="alertPageTitle()">Click to get Page Title</button>
+                    <script>
+                        function alertPageTitle() {
+                            alert(document.title);
+                            }
+                    </script>   
+            </section>
+    
+            <section id = "demo2">
+                <h2>Asynchronous Event</h2>
+                <button _="on click put 'Started...press Continue to finish' into the next <output/>
+                        wait for a continue
+                        put 'Hold on...' into the next <output/>
+                        wait 2s
+                        put 'Finished!' into the next <output/>"> Start
+                </button>
+                <button _="on click send continue to the previous <button/>"> Continue
+                </button>
+                <output>--</output>
+    
+                
+            </section>
+    
+            <section id="demo1">
+                <h2>Search filter</h2>
+                <table>
+                    <thead><tr><th><input _="on input
+                     show <tbody>tr/> in closest <table/>
+                       when its textContent.toLowerCase() contains my value.toLowerCase()
+                    "/></th></tr></thead>
+                    <tbody style="height:10em;display:block;">
+                      <tr><td>Foo Bar</td><td>Item 1</td></tr>
+                      <tr><td>Boo Bar</td><td>Item 2</td></tr>
+                      <tr><td>Gru Bar</td><td>Item 3</td></tr>
+                      <tr><td>Zoo Bar</td><td>Item 4</td></tr>
+                      <tr><td>Foo Bar</td><td>Item 5</td></tr>
+                    </tbody>
+                  </table>  
+            </section>
+    
+            <section id="demo2">
+                <h2>Number guessing game</h2>
+                <p>Guess a number between 1 and 10</p>
+    
+                <input type="number" id="guess" min="1" max="10">
+                <button _="on click guessNumber()">Guess</button>
+                <p id="feedback"></p>
+    
+                <script>
+                    var targetNumber = Math.floor(Math.random() * 10) + 1;
+                    function guessNumber() {
+                        var userGuess = parseInt(document.getElementById('guess').value, 10);
+                        var feedback = document.getElementById('feedback');
+    
+                        if (userGuess === targetNumber) {
+                            feedback.textContent = 'Congratulations! You guessed the right number!';
+                        } else if (userGuess < targetNumber) {
+                            feedback.textContent = 'Too low. Try again!';
+                        } else if (userGuess > targetNumber) {
+                            feedback.textContent = 'Too high. Try again!';
+                        }
+                    }
+                </script>
+            </section>
+        </div>
+        </div>
+        <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
     </body>
 </body>
 </html>

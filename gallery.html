@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Home</a></li>
+            <li><a href="form.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Form</a></li>
+            <li><a href="gallery.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Gallery</a></li>
+            <li><a href="game.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Game</a></li>
+            <li><button id="theme-switcher" _="on click toggle .dark-theme on body">Switch Theme</button></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Gallery</h1>
+        <div class="gallery">
+            <div class="thumbnails">
+                <img src="images/wolf.webp" _="
+                on mouseover 
+                    add .zoomed to me 
+                    put 'Wolf' into .caption's textContent
+                on mouseout 
+                    remove .zoomed from me 
+                    put '' into .caption's textContent
+                on click 
+                    put 'images/wolf.webp' into .big-image's src">
+                <img src="images/buffalo.jpeg" _="
+                on mouseover
+                    add .zoomed to me
+                    put 'Buffalo' into .caption's textContent
+                on mouseout
+                    remove .zoomed from me
+                    put '' into .caption's textContent
+                on click 
+                    put 'images/buffalo.jpeg' into .big-image's src">
+                <img src="images/pronghorn.jpeg" _="
+                on mouseover
+                    add .zoomed to me
+                    put 'Pronghorn' into .caption's textContent
+                on mouseout
+                    remove .zoomed from me
+                    put '' into .caption's textContent
+                on click 
+                    put 'images/pronghorn.jpeg' into .big-image's src">
+                <img src="images/bear.jpeg" _="
+                on mouseover
+                    add .zoomed to me
+                    put 'Bear' into .caption's textContent
+                on mouseout
+                    remove .zoomed from me
+                    put '' into .caption's textContent
+                on click
+                    put 'images/bear.jpeg' into .big-image's src">
+                <img src="images/crow.jpeg" _="
+                on mouseover
+                    add .zoomed to me
+                    put 'Crow' into .caption's textContent
+                on mouseout
+                    remove .zoomed from me
+                    put '' into .caption's textContent
+                on click 
+                    put 'images/crow.jpeg' into .big-image's src">
+                <img src="images/elk.jpg" _="
+                on mouseover
+                    add .zoomed to me
+                    put 'Elk' into .caption's textContent
+                on mouseout
+                    remove .zoomed from me
+                    put '' into .caption's textContent
+                on click
+                    put 'images/elk.jpg' into .big-image's src">
+                <img src="images/eagle.jpeg" _="
+                on mouseover
+                    add .zoomed to me
+                    put 'Eagle' into .caption's textContent
+                on mouseout
+                    remove .zoomed from me
+                    put '' into .caption's textContent
+                on click
+                    put 'images/eagle.jpeg' into .big-image's src">
+                
+            </div>
+            <p class="caption"></p>
+            <div class="display">
+                <img class="big-image" src="images/eagle.jpeg">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+</body>

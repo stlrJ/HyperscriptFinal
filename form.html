@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Home</a></li>
+            <li><a href="form.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Form</a></li>
+            <li><a href="gallery.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Gallery</a></li>
+            <li><a href="game.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Game</a></li>
+            <li><button id="theme-switcher" _="on click toggle .dark-theme on body">Switch Theme</button></li>
+        </ul>
+    </nav>
+    <div class="form-container">
+        <h2>Interactive Form</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" _="
+                on input 
+                if me.value.length > 0 
+                    then remove .invalid from me 
+                    then add .valid to me 
+                else 
+                    remove .valid from me 
+                    add .invalid to me
+            ">
+                <p class="error-message"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" _="
+                on input 
+                if me.value and me.value contains '@' and me.value contains '.' 
+                    then remove .invalid from me 
+                    then add .valid to me 
+                else 
+                    remove .valid from me 
+                    add .invalid to me
+            ">
+                <p class="error-message"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" _="
+                on input 
+                if me.value.length >= 6 
+                    then remove .invalid from me 
+                    then add .valid to me 
+                else 
+                    remove .valid from me 
+                    then add .invalid to me
+            ">
+                <p class="error-message"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" _="
+                on input 
+                if me.value === #password.value and me.value
+                    then remove .invalid from me 
+                    then add .valid to me 
+                else 
+                    remove .valid from me 
+                    add .invalid to me
+            ">
+                <p class="error-message"></p>
+            </div>
+
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function checkPasswordStrength(event) {
+            var password = event.target.value;
+            var strength = 0;
+            if (password.match(/[a-z]+/)) {
+                strength += 1;
+            }
+            if (password.match(/[A-Z]+/)) {
+                strength += 1;
+            }
+            if (password.match(/[0-9]+/)) {
+                strength += 1;
+            }
+
+            if (strength < 2) {
+                event.target.classList.add('invalid');
+                event.target.classList.remove('valid');
+            } else {
+                event.target.classList.add('valid');
+                event.target.classList.remove('invalid');
+            }
+        }
+    </script>
+
+
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+</body>

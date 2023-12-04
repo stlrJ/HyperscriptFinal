@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Home</a></li>
+            <li><a href="form.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Form</a></li>
+            <li><a href="gallery.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Gallery</a></li>
+            <li><a href="game.html" _="on mouseover add .hover-style to me on mouseout remove .hover-style from me">Game</a></li>
+            <li><button id="theme-switcher" _="on click toggle .dark-theme on body">Switch Theme</button></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section id="details">
+            <h2>Hangman</h2>
+            <div id="wordContainer"></div>
+            <div id="letters"></div>
+            <p id="feedback"></p>
+            <p id="mistakeCounter">Mistakes: 0</p>
+            <button onclick="resetGame()">Reset Game</button>
+        </section>
+    </div>
+    
+    <script>
+        var secretWord = 'HYPERSCRIPT';
+        var guessedLetters = [];
+        var mistakes = 0;
+        var maxMistakes = 5;
+
+        function initializeGame() {
+            var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var lettersContainer = document.getElementById('letters');
+            lettersContainer.innerHTML = '';
+            letters.split('').forEach(function(letter) {
+                var button = document.createElement('button');
+                button.textContent = letter;
+                button.onclick = function() { guessLetter(letter); };
+                lettersContainer.appendChild(button);
+            });
+
+            var wordContainer = document.getElementById('wordContainer');
+            wordContainer.innerHTML = '';
+            secretWord.split('').forEach(function() {
+                var underscore = document.createElement('span');
+                underscore.textContent = '_ ';
+                wordContainer.appendChild(underscore);
+            });
+        }
+
+        function guessLetter(letter) {
+            guessedLetters.push(letter);
+            event.target.disabled = true;
+
+            if (secretWord.includes(letter)) {
+                updateWordContainer();
+            } else {
+                mistakes++;
+                updateMistakeCounter();
+            }
+
+            checkGameStatus();
+        }
+
+        function updateWordContainer() {
+            var wordContainer = document.getElementById('wordContainer');
+            wordContainer.textContent = '';
+            secretWord.split('').forEach(function(char) {
+                var charDisplay = guessedLetters.includes(char) ? char : '_';
+                wordContainer.textContent += charDisplay + ' ';
+            });
+        }
+
+        function checkGameStatus() {
+            var feedback = document.getElementById('feedback');
+            if (mistakes >= maxMistakes) {
+                feedback.textContent = 'Game Over. The word was: ' + secretWord;
+                Array.from(document.getElementById('letters').children).forEach(button => button.disabled = true);
+            } else if (secretWord.split('').every(char => guessedLetters.includes(char))) {
+                feedback.textContent = 'Congratulations!';
+            }
+        }
+
+        function resetGame() {
+            secretWord = 'HYPERSCRIPT';
+            guessedLetters = [];
+            mistakes = 0;
+            document.getElementById('wordContainer').textContent = '';
+            document.getElementById('letters').textContent = '';
+            document.getElementById('feedback').textContent = '';
+            updateMistakeCounter();
+            initializeGame();
+        }
+
+        function updateMistakeCounter() {
+            var mistakeCounter = document.getElementById('mistakeCounter');
+            mistakeCounter.textContent = 'Mistakes: ' + mistakes;
+        }
+
+        initializeGame();
+    </script>
+    
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+</body>
